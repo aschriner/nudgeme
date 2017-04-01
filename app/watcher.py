@@ -20,10 +20,12 @@ def get_daytum_entries():
 
 def get_latest_entry(response):
     soup = BeautifulSoup(response.content, 'html.parser')
-    entry = soup.select('#entry_list .edit_right span')[0]
-    date_str = entry.contents[0].strip().split(',')[0]
+    entry = soup.select('#entry_list .edit_row')[0]
+    name = entry.select('.entry_name a')[0].contents[0]
+    date_str = entry.select('.edit_right span')[0].contents[0].strip().split(',')[0]
     return {
-        "date": datetime.strptime(date_str, settings.DATE_FORMAT)
+        "date": datetime.strptime(date_str, settings.DATE_FORMAT),
+        "name": name
     }
 
 
@@ -36,7 +38,8 @@ def do_the_thing():
             recipients=[settings.NOTIFY_EMAIL],
             subject='Get on it',
             body=settings.EMAIL_BODY.format(
-                entry_date=datetime.strftime(entry['date'], settings.DATE_FORMAT)))
+                entry_date=datetime.strftime(entry['date'], settings.DATE_FORMAT),
+                entry_name=entry['name']))
 
 
 if __name__ == '__main__':
