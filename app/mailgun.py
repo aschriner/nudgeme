@@ -1,7 +1,7 @@
 import os
 import requests
 
-import settings
+from app import settings
 
 
 def send_email(recipients, subject, body):

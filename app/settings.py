@@ -9,7 +9,7 @@ NOTIFY_EMAIL = os.environ['NOTIFY_EMAIL']
 
 DATE_FORMAT = '%m/%d/%Y'
 EMAIL_BODY = """\
-Your last entry in Daytum is "{entry_name}" from {entry_date}, which means you either haven't been exercising or you forgot to log it.  Better get on that!
+Your last entry in Daytum is "{entry_name}" from {entry_day}, {entry_date}, which means you either haven't been exercising or you forgot to log it.  Better get on that!
 
 Log it here: https://daytum.com/spoutdoors
 """
