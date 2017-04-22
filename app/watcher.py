@@ -39,10 +39,8 @@ def process_entry(entry):
             )
 
 def get_email_body(entry):
-    return settings.EMAIL_BODY.format(
-        entry_day=entry['date'].strftime('%A'),
-        entry_date=entry['date'].strftime(settings.DATE_FORMAT),
-        entry_name=entry['name'])
+    return settings.EMAIL_BODY.format(**entry)
+
 
 def do_the_thing():
     resp = get_daytum_entries()

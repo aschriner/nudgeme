@@ -17,8 +17,13 @@ class TestFunctionalTests(TestCase):
     def test_get_entry(self):
         response = self.get_test_response()
         entry = get_latest_entry(response)
-        expected_last_entry_date = datetime(year=2017, month=4, day=20)
-        self.assertEqual(entry['date'], expected_last_entry_date)
+        expected_entry = {
+            "date": datetime(year=2017, month=4, day=20),
+            "name": "light lifting"
+        }
+        self.assertEqual(entry['date'], expected_entry['date'])
+        self.assertEqual(entry['name'], expected_entry['name'])
+
 
     @mock.patch('app.mailgun.send_email')
     def test_process_entry(self, mock_send_email):
